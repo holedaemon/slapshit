@@ -1,0 +1,20 @@
+www.hole.casa, hole.casa {
+    root /srv/hole.casa
+    file_server
+    templates
+    encode gzip zstd
+
+    route {
+        basic_auth /seedhost {
+            {$SEEDHOST_ACCESS_USERNAME} {$SEEDHOST_ACCESS_PASSWORD}
+        }
+
+        try_files {path}.html {path}
+    }
+
+    handle_errors {
+        respond "{err.status_code} {err.status_text}"
+    }
+}
+
+# vim: ft=caddy

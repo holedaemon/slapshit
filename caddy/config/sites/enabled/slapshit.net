@@ -1,0 +1,5 @@
+portainer.slapshit.net {
+    reverse_proxy portainer
+}
+
+# vim: ft=caddy

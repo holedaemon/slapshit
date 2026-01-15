@@ -1,0 +1,18 @@
+mysjif.cowboy.quest, www.cowboy.quest, cowboy.quest {
+    root /srv/cowboy.quest
+    file_server
+    try_files {path}.html {path}
+    encode gzip zstd
+
+    handle_errors {
+        @handler file /{err.status_code}.html
+        handle @handler {
+            rewrite * {file_match.relative}
+            file_server
+        }
+
+        respond "{err.status_code} {err.status_text}"
+    }
+}
+
+# vim: ft=caddy

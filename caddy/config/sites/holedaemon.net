@@ -1,0 +1,33 @@
+www.holedaemon.net, holedaemon.net {
+    root /srv/holedaemon.net
+    file_server
+    try_files {path}.html {path}
+    templates
+    encode gzip zstd
+
+    rewrite /blog/post* blog_post.html
+
+    handle /images/* {
+        file_server browse
+    }
+
+    handle /box/* {
+        file_server browse
+    }
+
+    handle_errors {
+        rewrite * /error.html
+        file_server
+        templates
+    }
+}
+
+bot.holedaemon.net {
+    reverse_proxy bot2-web
+}
+
+gopster.holedaemon.net {
+    reverse_proxy bot2-gopster
+}
+
+# vim: ft=bash
