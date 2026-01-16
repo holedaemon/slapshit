@@ -1,0 +1,40 @@
+services:
+  bot:
+    image: ghcr.io/holedaemon/bot2:latest
+    container_name: "bot2_bot"
+    command: [ "bot" ]
+    restart: unless-stopped
+    networks:
+      - bot2
+
+  web:
+    image: ghcr.io/holedaemon/bot2:latest
+    container_name: "bot2_web"
+    command: [ "web" ]
+    restart: unless-stopped
+    networks:
+      - bot2
+      - caddy
+
+  postgres:
+    image: postgres:17
+    container_name: "bot2_postgres"
+    restart: unless-stopped
+    volumes:
+      - "/var/opt/slapshit/bot2/database:/var/lib/postgresql/data"
+    networks:
+      - bot2
+
+  gopster:
+    image: ghcr.io/holedaemon/microgopster:latest
+    container_name: "bot2_gopster"
+    restart: unless-stopped
+    networks:
+      - caddy
+
+networks:
+  default:
+    name: bot2
+
+  caddy:
+    external: true
