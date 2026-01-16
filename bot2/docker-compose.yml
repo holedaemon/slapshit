@@ -33,8 +33,7 @@ services:
       - caddy
 
 networks:
-  default:
-    name: bot2
-
+  bot2:
+    external: true
   caddy:
     external: true
