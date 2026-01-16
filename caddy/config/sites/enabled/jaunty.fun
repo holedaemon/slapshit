@@ -27,7 +27,7 @@ www.jaunty.fun, jaunty.fun {
 }
 
 listmonk.jaunty.fun {
-    reverse_proxy listmonk_webapp
+    reverse_proxy listmonk
 }
 
 # vim: ft=caddy
