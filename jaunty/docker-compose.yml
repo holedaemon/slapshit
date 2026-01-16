@@ -1,0 +1,45 @@
+services:
+  listmonk:
+    image: listmonk/listmonk:latest
+    container_name: listmonk
+    restart: unless-stopped
+    command: [ "sh", "-c", "./listmonk --install --idempotent --yes --config '/listmonk/config/config.toml' && ./listmonk --upgrade --yes --config '/listmonk/config/config.toml' && ./listmonk --config '/listmonk/config/config.toml'"]
+    environment:
+      TZ: America/Los_Angeles
+      PUID: 1000
+      PGID: 1000
+    volumes:
+      - "/var/opt/slapshit/jaunty/listmonk/uploads:/listmonk/uploads"
+      - "./config:/listmonk/config"
+    networks:
+      - listmonk
+      - caddy
+    depends_on:
+      - database
+
+  database:
+    image: postgres:17-alpine
+    container_name: listmonk_database
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGID: 1000
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_DB: "${POSTGRES_DB}"
+    volumes:
+      - "/var/opt/slapshit/jaunty/listmonk/database:/var/lib/postgresql/data"
+    networks:
+      - listmonk
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U listmonk" ]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+
+networks:
+  listmonk:
+    external: true
+  caddy:
+    external: true
+
