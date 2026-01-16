@@ -23,11 +23,11 @@ www.holedaemon.net, holedaemon.net {
 }
 
 bot.holedaemon.net {
-    reverse_proxy bot2-web
+    reverse_proxy bot2_web
 }
 
 gopster.holedaemon.net {
-    reverse_proxy bot2-gopster
+    reverse_proxy bot2_gopster
 }
 
 # vim: ft=bash
