@@ -1,3 +1,7 @@
+www.slapshit.net, slapshit.net {
+    reverse_proxy forgejo:8080
+}
+
 portainer.slapshit.net {
     reverse_proxy portainer:9000
 }
