@@ -3,11 +3,11 @@ services:
     image: codeberg.org/forgejo/forgejo:14
     container_name: forgejo
     restart: unless-stopped
-    command: [ "forgejo", "web", "--config", "/etc/forgejo/config.ini" ]
     environment:
       USER_UID: ${USER_UID}
       USER_GID: ${USER_GID}
 
+      FORGEJO_CUSTOM: /etc/forgejo
       FORGEJO__database__PASSWD: ${FORGEJO__database__PASSWD}
       FORGEJO__security__SECRET_KEY: ${FORGEJO__security__SECRET_KEY}
       FORGEJO__security__INTERNAL_TOKEN: ${FORGEJO__security__INTERNAL_TOKEN}
