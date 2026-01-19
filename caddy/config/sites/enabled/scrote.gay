@@ -1,0 +1,35 @@
+www.scrote.gay, scrote.gay {
+    root /srv/scrote.gay
+    try_files {path}.html {path}
+    file_server
+    templates
+    encode gzip zstd
+
+    handle_path /link/* {
+        handle /youtube {
+            redir https://youtube.com/@SCROTEGANG
+        }
+
+        handle /twitter {
+            redir https://wikifeet.com/madonna
+        }
+
+        handle /bluesky {
+            redir https://bsky.app/profile/scrote.gay
+        }
+
+        handle /github {
+            redir https://github.com/SCROTEGANG
+        }
+    }
+}
+
+http://brawl.scrote.gay {
+    root /srv/brawl.scrote.gay
+    file_server
+    handle_errors {
+        respond "{err.status_code} {err.status_text}"
+    }
+}
+
+# vim: ft=caddy
