@@ -8,6 +8,7 @@ services:
       USER_UID: 1001 # Run under `git` user
       USER_GID: 1001
 
+      FORGEJO__database__PASSWD: "${FORGEJO__database__PASSWD}"
       FORGEJO__security__SECRET_KEY: "${FORGEJO__security__SECRET_KEY}"
       FORGEJO__security__INTERNAL_TOKEN: "${FORGEJO__security__INTERNAL_TOKEN}"
     ports:
