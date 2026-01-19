@@ -26,7 +26,7 @@ www.scrote.gay, scrote.gay {
 
 http://brawl.scrote.gay {
     root /srv/brawl.scrote.gay
-    file_server
+    file_server browse
     handle_errors {
         respond "{err.status_code} {err.status_text}"
     }
