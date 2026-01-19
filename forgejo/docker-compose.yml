@@ -15,7 +15,7 @@ services:
     ports:
       - 2222:2222
     volumes:
-      - ./config:etc/forgejo
+      - ./config:/etc/forgejo
       - /var/opt/slapshit/forgejo/data:/data
       - /etc/localtime:/etc/localtime:ro
     networks:
