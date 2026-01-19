@@ -1,6 +1,6 @@
 services:
   forgejo:
-    image: codeberg.org/forgejo/forgejo:13
+    image: codeberg.org/forgejo/forgejo:14
     container_name: forgejo
     restart: unless-stopped
     command: [ "web", "--config /etc/forgejo/config.ini" ]
@@ -14,6 +14,7 @@ services:
     ports:
       - 2222:22
     volumes:
+      - /var/opt/slapshit/forgejo/config:/etc/forgejo
       - /var/opt/slapshit/forgejo/data:/data
       - /etc/localtime:/etc/localtime:ro
     networks:
