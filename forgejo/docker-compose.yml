@@ -16,7 +16,7 @@ services:
       - 2222:2222
     volumes:
       - ./config:/etc/forgejo
-      - /home/git/.local/share:/data
+      - /home/git/.local/share/forgejo:/data
       - /etc/localtime:/etc/localtime:ro
     networks:
       - forgejo
