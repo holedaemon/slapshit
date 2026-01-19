@@ -1,0 +1,40 @@
+services:
+  forgejo:
+    image: codeberg.org/forgejo/forgejo:13
+    container_name: forgejo
+    restart: unless-stopped
+    command: [ "web", "--config /etc/forgejo/config.ini" ]
+    environment:
+      USER_UID: 1001 # Run under `git` user
+      USER_GID: 1001
+
+      FORGEJO__security__SECRET_KEY: "${FORGEJO__security__SECRET_KEY}"
+      FORGEJO__security__INTERNAL_TOKEN: "${FORGEJO__security__INTERNAL_TOKEN}"
+    ports:
+      - 2222:22
+    volumes:
+      - /var/opt/slapshit/forgejo/data:/data
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - forgejo
+      - caddy
+
+  database:
+    image: postgres:18
+    container_name: forgejo_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - /var/opt/slapshit/forgejo/database:/var/lib/postgresql/data
+    networks:
+      - forgejo
+
+networks:
+  forgejo:
+    external: true
+
+  caddy:
+    external: true
