@@ -3,7 +3,7 @@ services:
     image: codeberg.org/forgejo/forgejo:14
     container_name: forgejo
     restart: unless-stopped
-    command: [ "forgejo", "web", "--config /etc/forgejo/config.ini" ]
+    command: [ "forgejo", "web", "--config", "/etc/forgejo/config.ini" ]
     environment:
       USER_UID: 1001 # Run under `git` user
       USER_GID: 1001
