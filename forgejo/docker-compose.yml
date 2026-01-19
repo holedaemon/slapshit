@@ -12,7 +12,7 @@ services:
       FORGEJO__security__SECRET_KEY: "${FORGEJO__security__SECRET_KEY}"
       FORGEJO__security__INTERNAL_TOKEN: "${FORGEJO__security__INTERNAL_TOKEN}"
     ports:
-      - 2222:22
+      - 2222:2222
     volumes:
       - /var/opt/slapshit/forgejo/config:/etc/forgejo
       - /var/opt/slapshit/forgejo/data:/data
