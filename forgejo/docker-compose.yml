@@ -16,7 +16,7 @@ services:
       - 2222:2222
     volumes:
       - ./config:/etc/forgejo
-      - /var/opt/slapshit/forgejo/data:/data
+      - /home/git/.local/share:/data
       - /etc/localtime:/etc/localtime:ro
     networks:
       - forgejo
