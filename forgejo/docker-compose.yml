@@ -24,6 +24,7 @@ services:
 
   database:
     image: postgres:18
+    container_name: forgejo_database
     restart: unless-stopped
     environment:
       POSTGRES_USER: forgejo
