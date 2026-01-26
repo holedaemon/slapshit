@@ -9,6 +9,7 @@ services:
     environment:
       USER_UID: 1000
       USER_GID: 1000
+      FORGEJO_CUSTOM: /etc/gitea
       FORGEJO__database__PASSWD: ${FORGEJO__database__PASSWD}
     ports:
       - "22:2222"
