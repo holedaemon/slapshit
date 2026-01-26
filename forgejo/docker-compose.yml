@@ -18,7 +18,7 @@ services:
       FORGEJO__server__START_SSH_SERVER: true
 
       FORGEJO__database__DB_TYPE: postgres
-      FORGEJO__database__HOST: forgejo_postgres
+      FORGEJO__database__HOST: forgejo_database
       FORGEJO__database__NAME: gitea
       FORGEJO__database__USER: forgejo
       FORGEJO__database__PASSWD: ${FORGEJO__database__PASSWD}
