@@ -4,8 +4,8 @@ services:
     container_name: forgejo
     restart: unless-stopped
     environment:
-      USER_UID: 1000
-      USER_GID: 1000
+      USER_UID: 999
+      USER_GID: 986
       FORGEJO_CUSTOM: /etc/forgejo
       FORGEJO__database__PASSWD: ${FORGEJO__database__PASSWD}
     ports:
