@@ -6,12 +6,36 @@ services:
     environment:
       USER_UID: 999
       USER_GID: 986
-      FORGEJO_CUSTOM: /etc/forgejo
+
+      FORGEJO____APP_NAME: ${FORGEJO____APP_NAME}
+      FORGEJO____APP_SLOGAN: ${FORGEJO____APP_SLOGAN}
+      FORGEJO____RUN_USER: git
+      FORGEJO____RUN_MODE: prod
+
+      FORGEJO__server__PROTOCOL: http
+      FORGEJO__server__DOMAIN: slapshit.net
+      FORGEJO__server__HTTP_PORT: "8080"
+      FORGEJO__server__START_SSH_SERVER: true
+
+      FORGEJO__database__DB_TYPE: postgres
+      FORGEJO__database__HOST: forgejo_postgres
+      FORGEJO__database__NAME: gitea
+      FORGEJO__database__USER: forgejo
       FORGEJO__database__PASSWD: ${FORGEJO__database__PASSWD}
+      FORGEJO__database__SSL_MODE: disable
+
+      FORGEJO__security__INSTALL_LOCK: true
+
+      FORGEJO__service__DISABLE_REGISTRATION: true
+      FORGJEO__service__DISABLE_STARS: true
+      FORGEJO__service__DEFAULT_BRANCH: trunk
+
+      FORGEJO__other__SHOW_FOOTER_VERSION: false
+      FORGEJO__other__SHOW_FOOTER_TEMPLATE_LOAD_TIME: false
+      FORGEJO__other__SHOW_FOOTER_POWERED_BY: false
     ports:
-      - "22:2222"
+      - "22:22"
     volumes:
-      - ./config:/etc/forgejo
       - /var/opt/slapshit/forgejo/data:/data
       - /etc/localtime:/etc/localtime:ro
     networks:
