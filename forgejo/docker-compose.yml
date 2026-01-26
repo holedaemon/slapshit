@@ -29,7 +29,7 @@ services:
       POSTGRES_PASSWORD: ${FORGEJO__database__PASSWD}
       POSTGRES_DB: forgejo
     volumes:
-      - /var/opt/slapshit/forgejo/database:/var/lib/postgresql/data
+      - /var/opt/slapshit/forgejo/database:/var/lib/postgresql
     networks:
       - forgejo
 
