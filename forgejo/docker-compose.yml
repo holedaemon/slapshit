@@ -3,7 +3,7 @@ services:
     image: codeberg.org/forgejo/forgejo:14-rootless
     container_name: forgejo
     restart: unless-stopped
-    user: 1001:1001
+    user: 1000:1000
     cap_add:
       - NET_BIND_SERVICE
     environment:
