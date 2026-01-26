@@ -1,40 +1,42 @@
 services:
   forgejo:
-    image: codeberg.org/forgejo/forgejo:14
+    image: codeberg.org/forgejo/forgejo:14-rootless
     container_name: forgejo
     restart: unless-stopped
+    user: 1001:1001
+    cap_add:
+      - NET_BIND_SERVICE
     environment:
-      USER_UID: ${USER_UID}
-      USER_GID: ${USER_GID}
-
-      FORGEJO_CUSTOM: /etc/forgejo
+      USER_UID: 1001
+      USER_GID: 1001
       FORGEJO__database__PASSWD: ${FORGEJO__database__PASSWD}
-      FORGEJO__security__SECRET_KEY: ${FORGEJO__security__SECRET_KEY}
-      FORGEJO__security__INTERNAL_TOKEN: ${FORGEJO__security__INTERNAL_TOKEN}
+    ports:
+      - "22:2222"
     volumes:
-      - ./config:/etc/forgejo
-      - /home/git/.local/share/forgejo:/data
+      - ./config:/etc/gitea
+      - /var/opt/slapshit/forgejo/data:/var/lib/gitea
       - /etc/localtime:/etc/localtime:ro
     networks:
-      - forgejo
       - caddy
+      - forgejo
+    depends_on:
+      - database
 
   database:
     image: postgres:18
-    container_name: forgejo_postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: forgejo
+      POSTGRES_PASSWORD: ${FORGEJO__database__PASSWD}
+      POSTGRES_DB: forgejo
     volumes:
-      - /var/opt/slapshit/forgejo/database:/var/lib/postgresql
+      - /var/opt/slapshit/forgejo/database:/var/lib/postgresql/data
     networks:
       - forgejo
 
 networks:
-  forgejo:
+  caddy:
     external: true
 
-  caddy:
+  forgejo:
     external: true
