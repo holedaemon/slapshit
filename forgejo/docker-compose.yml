@@ -16,6 +16,7 @@ services:
       FORGEJO__server__DOMAIN: slapshit.net
       FORGEJO__server__HTTP_PORT: "8080"
       FORGEJO__server__START_SSH_SERVER: true
+      FORGEJO__server__SSH_LISTEN_PORT: "222"
 
       FORGEJO__database__DB_TYPE: postgres
       FORGEJO__database__HOST: forgejo_database
@@ -34,7 +35,7 @@ services:
       FORGEJO__other__SHOW_FOOTER_TEMPLATE_LOAD_TIME: false
       FORGEJO__other__SHOW_FOOTER_POWERED_BY: false
     ports:
-      - "22:22"
+      - "22:222"
     volumes:
       - /var/opt/slapshit/forgejo/data:/data
       - /etc/localtime:/etc/localtime:ro
