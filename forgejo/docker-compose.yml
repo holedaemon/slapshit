@@ -1,21 +1,18 @@
 services:
   forgejo:
-    image: codeberg.org/forgejo/forgejo:14-rootless
+    image: codeberg.org/forgejo/forgejo:14
     container_name: forgejo
     restart: unless-stopped
-    user: 1000:1000
-    cap_add:
-      - NET_BIND_SERVICE
     environment:
       USER_UID: 1000
       USER_GID: 1000
-      FORGEJO_CUSTOM: /etc/gitea
+      FORGEJO_CUSTOM: /etc/forgejo
       FORGEJO__database__PASSWD: ${FORGEJO__database__PASSWD}
     ports:
       - "22:2222"
     volumes:
-      - ./config:/etc/gitea
-      - /var/opt/slapshit/forgejo/data:/var/lib/gitea
+      - ./config:/etc/forgejo
+      - /var/opt/slapshit/forgejo/data:/data
       - /etc/localtime:/etc/localtime:ro
     networks:
       - caddy
