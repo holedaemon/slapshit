@@ -19,6 +19,10 @@ www.jaunty.fun, jaunty.fun {
         file_server browse
     }
 
+    handle /stream {
+        respond "UNDER CONSTRUCTION . GIF CHECK BACK SOON!!"
+    }
+
     handle_errors {
         rewrite /error.html
         file_server
