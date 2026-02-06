@@ -5,6 +5,9 @@ www.scrote.gay, scrote.gay {
     templates
     encode gzip zstd
 
+    @hifiPath path_regexp ^\/hifi\/[0-9]{1,4}$
+    rewrite @hifiPath /hifi.html
+
     handle_path /link/* {
         handle /youtube {
             redir https://youtube.com/@SCROTEGANG
