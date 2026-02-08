@@ -20,7 +20,7 @@ www.jaunty.fun, jaunty.fun {
     }
 
     handle /stream {
-        respond "UNDER CONSTRUCTION . GIF CHECK BACK SOON!!"
+        redir https://www.twitch.tv/djball_icker
     }
 
     handle_errors {
