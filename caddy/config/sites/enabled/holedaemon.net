@@ -30,4 +30,4 @@ gopster.holedaemon.net {
     reverse_proxy bot2_gopster
 }
 
-# vim: ft=bash
+# vim: ft=caddy
