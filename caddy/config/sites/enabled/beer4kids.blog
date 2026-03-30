@@ -1,0 +1,11 @@
+www.beer4kids.blog, beer4kids.blog {
+    root /srv/beer4kids.blog
+    file_server
+    try_files {path}.html {path}
+    templates
+    encode gzip zstd
+
+    rewrite /post/* post.html
+}
+
+# vim: ft=caddy
