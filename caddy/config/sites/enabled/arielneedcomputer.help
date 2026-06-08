@@ -1,9 +1,0 @@
-www.arielneedcomputer.help, arielneedcomputer.help {
-    root /srv/arielneedcomputer.help
-    file_server
-    try_files {path}.html {path}
-    templates
-    encode gzip zstd
-}
-
-# vim: ft=caddy
